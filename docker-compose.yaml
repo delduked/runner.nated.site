@@ -1,0 +1,24 @@
+---
+version: '3.8'
+
+services:
+  cds-status-app:
+    build:
+      context: .
+      dockerfile: dockerfile.yaml
+      args:
+        RUNNER_VERSION: '2.308.0'
+    environment:
+      GH_TOKEN: ${GH_TOKEN}
+      GH_OWNER: ${GH_OWNER}
+      GH_REPOSITORY: 'cds.status.app'
+#  cds-terminal-app:
+#    build:
+#      context: .
+#      dockerfile: ./dockerfile.yaml
+#      args:
+#        RUNNER_VERSION: '2.292.0'
+#    environment:
+#      GH_TOKEN: ${GH_TOKEN}
+#      GH_OWNER: ${GH_OWNER}
+#      GH_REPOSITORY: 'cds.terminal.app'
