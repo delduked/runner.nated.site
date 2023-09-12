@@ -16,7 +16,7 @@ REG_TOKEN=$(curl -L \
 
 cd /home/docker/actions-runner
 
-./config.sh --unattended --url https://github.com/${GH_OWNER}/${GH_REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME}
+./config.sh --unattended --url https://github.com/${GH_OWNER}/${GH_REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME} --labels self-hosted,X64,Linux,home,docker
 
 cleanup() {
     echo "Removing runner..."
