@@ -13,13 +13,13 @@ RUNNER_NAME="runnner-${RUNNER_SUFFIX}"
 REG_TOKEN=$(curl -L \
   -X POST \
   -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer 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" \
+  -H "Authorization: Bearer ${GH_TOKEN}" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/${GH_OWNER}/${GH_REPOSITORY}/actions/runners/registration-token | jq .token --raw-output)
 
 cd /home/docker/actions-runner
 
-./config.sh --unattended --url https://github.com/${GH_OWNER}/${GH_REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME} --labels self-hosted,X64,Linux,home,docker
+./config.sh --unattended --url https://github.com/${GH_OWNER}/${GH_REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME} --labels ${GH_REPOSITORY} 
 
 cleanup() {
     echo "Removing runner..."
