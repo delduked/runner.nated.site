@@ -1,5 +1,8 @@
 #!/bin/bash
 
+kubectl version --client
+helm version --client
+
 GH_OWNER=$GH_OWNER
 GH_REPOSITORY=$GH_REPOSITORY
 GH_TOKEN=$GH_TOKEN

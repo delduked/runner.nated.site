@@ -1,5 +1,5 @@
 # base image
-FROM ubuntu:20.04
+FROM --platform=linux/amd64 ubuntu:20.04
 
 #input GitHub runner version argument
 ARG RUNNER_VERSION
@@ -12,7 +12,18 @@ LABEL BaseImage="ubuntu:20.04"
 LABEL RunnerVersion=${RUNNER_VERSION}
 
 # update the base packages + add a non-sudo user
-RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y gnupg2 apt-transport-https ca-certificates curl && useradd -m docker 
+
+# install kubectl cli tool
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
+    && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
+    && kubectl version --client
+
+# install helm cli tool
+RUN curl -LO https://git.io/get_helm.sh \
+    && chmod 700 get_helm.sh \
+    && ./get_helm.sh \
+    && helm version --client
 
 # install the packages and dependencies along with jq so we can parse JSON (add additional packages as necessary)
 RUN apt-get install -y --no-install-recommends \
