@@ -4,7 +4,7 @@ FROM --platform=linux/amd64 ubuntu:20.04
 #input GitHub runner version argument
 ARG RUNNER_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
-ARG DOCKER_GID=999
+# ARG DOCKER_GID=999
 
 LABEL Author="Nate D"
 LABEL Email="nated@nated.ca"
@@ -62,10 +62,13 @@ RUN chmod +x start.sh
 # RUN rm -rf /var/lib/apt/lists/lock
 
 # Use the DOCKER_GID to create the docker group
-RUN groupadd -g ${DOCKER_GID} docker && \
-    useradd -m gh && \
+RUN useradd -m gh && \
     usermod -aG docker gh \
-    && chown -R gh:gh /actions-runner
+    && chown -R gh:gh /actions-runner \
+    && touch /var/run/docker.sock \
+    && chown -R gh:gh /var/run/docker.sock
+
+RUN npm i -g @actions/github
 
 USER gh
 
