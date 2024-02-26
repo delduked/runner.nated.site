@@ -28,7 +28,10 @@ get_installation_token() {
 
 # Main script execution
 jwt=$(generate_jwt)
-GH_TOKEN=$(get_installation_token "$jwt")
+installation_token=$(get_installation_token "$jwt")
+
+echo "new jwt token : $jwt"
+echo "new gh token  : $installation_token"
 
 # Use the installation token instead of a PAT for runner registration
 GH_TOKEN=$installation_token
@@ -41,7 +44,7 @@ RUNNER_NAME="runnner-${RUNNER_SUFFIX}"
 REG_TOKEN=$(curl -L \
 	-X POST \
 	-H "Accept: application/vnd.github+json" \
-	-H "Authorization: Bearer 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" \
+	-H "Authorization: Bearer $GH_TOKEN" \
 	-H "X-GitHub-Api-Version: 2022-11-28" \
 	https://api.github.com/repos/${GH_OWNER}/${GH_REPOSITORY}/actions/runners/registration-token | jq .token --raw-output)
 

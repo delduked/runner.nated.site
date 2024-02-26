@@ -12,6 +12,9 @@ services:
       GH_TOKEN: ${GH_TOKEN}
       GH_OWNER: ${GH_OWNER}
       GH_REPOSITORY: 'cds.status.app'
+      INSTALLATION_ID: ${INSTALLATION_ID}
+      APP_ID: ${APP_ID}
+      CLIENT_ID: ${CLIENT_ID}
   cds-terminal-app:
     build:
       context: .
@@ -22,6 +25,9 @@ services:
       GH_TOKEN: ${GH_TOKEN}
       GH_OWNER: ${GH_OWNER}
       GH_REPOSITORY: 'cds.terminal.app'
+      INSTALLATION_ID: ${INSTALLATION_ID}
+      APP_ID: ${APP_ID}
+      CLIENT_ID: ${CLIENT_ID}
   boluswizard:
     build:
       context: .
@@ -32,6 +38,9 @@ services:
       GH_TOKEN: ${GH_TOKEN}
       GH_OWNER: ${GH_OWNER}
       GH_REPOSITORY: 'boluswizard'
+      INSTALLATION_ID: ${INSTALLATION_ID}
+      CLIENT_ID: ${CLIENT_ID}
+      APP_ID: ${APP_ID}
   yourkeysyourcrypto:
     build:
       context: .
@@ -42,3 +51,6 @@ services:
       GH_TOKEN: ${GH_TOKEN}
       GH_OWNER: ${GH_OWNER}
       GH_REPOSITORY: 'YourKeysYourCrypto'
+      INSTALLATION_ID: ${INSTALLATION_ID}
+      APP_ID: ${APP_ID}
+      CLIENT_ID: ${CLIENT_ID}
