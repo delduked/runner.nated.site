@@ -22,3 +22,23 @@ services:
       GH_TOKEN: ${GH_TOKEN}
       GH_OWNER: ${GH_OWNER}
       GH_REPOSITORY: 'cds.terminal.app'
+  boluswizard:
+    build:
+      context: .
+      dockerfile: dockerfile.yaml
+      args:
+        RUNNER_VERSION: '2.308.0'
+    environment:
+      GH_TOKEN: ${GH_TOKEN}
+      GH_OWNER: ${GH_OWNER}
+      GH_REPOSITORY: 'boluswizard'
+  yourkeysyourcrypto:
+    build:
+      context: .
+      dockerfile: dockerfile.yaml
+      args:
+        RUNNER_VERSION: '2.308.0'
+    environment:
+      GH_TOKEN: ${GH_TOKEN}
+      GH_OWNER: ${GH_OWNER}
+      GH_REPOSITORY: 'YourKeysYourCrypto'
