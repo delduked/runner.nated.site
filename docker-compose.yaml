@@ -2,55 +2,40 @@
 version: '3.8'
 
 services:
-  cds-status-app:
+  # cds-status-app:
+  #   build:
+  #     context: .
+  #     dockerfile: dockerfile.yaml
+  #     args:
+  #       RUNNER_VERSION: '2.312.0'
+  #   environment:
+  #     GH_TOKEN: ${GH_TOKEN}
+  #     GH_OWNER: ${GH_OWNER}
+  #     GH_REPOSITORY: 'cds.status.app'
+  # cds-terminal-app:
+  #   build:
+  #     context: .
+  #     dockerfile: dockerfile.yaml
+  #     args:
+  #       RUNNER_VERSION: '2.312.0'
+  #   environment:
+  #     GH_TOKEN: ${GH_TOKEN}
+  #     GH_OWNER: ${GH_OWNER}
+  #     GH_REPOSITORY: 'cds.terminal.app'
+  natedresume:
+    user: "1000"
     build:
       context: .
       dockerfile: dockerfile.yaml
       args:
-        RUNNER_VERSION: '2.308.0'
+        RUNNER_VERSION: '2.312.0'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    privileged: true
     environment:
       GH_TOKEN: ${GH_TOKEN}
       GH_OWNER: ${GH_OWNER}
-      GH_REPOSITORY: 'cds.status.app'
-      INSTALLATION_ID: ${INSTALLATION_ID}
-      APP_ID: ${APP_ID}
-      CLIENT_ID: ${CLIENT_ID}
-  cds-terminal-app:
-    build:
-      context: .
-      dockerfile: dockerfile.yaml
-      args:
-        RUNNER_VERSION: '2.308.0'
-    environment:
-      GH_TOKEN: ${GH_TOKEN}
-      GH_OWNER: ${GH_OWNER}
-      GH_REPOSITORY: 'cds.terminal.app'
-      INSTALLATION_ID: ${INSTALLATION_ID}
-      APP_ID: ${APP_ID}
-      CLIENT_ID: ${CLIENT_ID}
-  boluswizard:
-    build:
-      context: .
-      dockerfile: dockerfile.yaml
-      args:
-        RUNNER_VERSION: '2.308.0'
-    environment:
-      GH_TOKEN: ${GH_TOKEN}
-      GH_OWNER: ${GH_OWNER}
-      GH_REPOSITORY: 'boluswizard'
-      INSTALLATION_ID: ${INSTALLATION_ID}
-      CLIENT_ID: ${CLIENT_ID}
-      APP_ID: ${APP_ID}
-  yourkeysyourcrypto:
-    build:
-      context: .
-      dockerfile: dockerfile.yaml
-      args:
-        RUNNER_VERSION: '2.308.0'
-    environment:
-      GH_TOKEN: ${GH_TOKEN}
-      GH_OWNER: ${GH_OWNER}
-      GH_REPOSITORY: 'YourKeysYourCrypto'
+      GH_REPOSITORY: 'natedresume'
       INSTALLATION_ID: ${INSTALLATION_ID}
       APP_ID: ${APP_ID}
       CLIENT_ID: ${CLIENT_ID}
