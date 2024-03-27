@@ -56,3 +56,20 @@ services:
       INSTALLATION_ID: ${INSTALLATION_ID}
       APP_ID: ${APP_ID}
       CLIENT_ID: ${CLIENT_ID}
+  go_proxy-charts:
+    user: "1000"
+    build:
+      context: .
+      dockerfile: dockerfile.yaml
+      args:
+        RUNNER_VERSION: '2.312.0'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    privileged: true
+    environment:
+      GH_TOKEN: ${GH_TOKEN}
+      GH_OWNER: ${GH_OWNER}
+      GH_REPOSITORY: 'go_proxy-charts'
+      INSTALLATION_ID: ${INSTALLATION_ID}
+      APP_ID: ${APP_ID}
+      CLIENT_ID: ${CLIENT_ID}
